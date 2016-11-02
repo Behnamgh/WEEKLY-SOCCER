@@ -18,23 +18,7 @@ bot.on('update', update => {
   console.log('Polled\n', update);
 });
 
-const question = new Question({
-  text: 'How should I greet you?',
-  answers: [['Hey'], ['Hello, Sir'], ['Yo bro']]
-});
 
-bot.get(/asdasdassdasd/, message => {
-  const id = message.chat.id;
-
-  question.to(id).reply(message.message_id);
-  bot.send(question).then(answer => {
-    const msg = new Message().to(id).text('Your answer: ' + answer.text);
-    bot.send(msg);
-  }, () => {
-    const msg = new Message().to(id).text('Invalid answer');
-    bot.send(msg);
-  });
-});
 
 bot.command('ki mibare', function(message) {
   var answer2 = new Message().text('maloome,oon teami ke behnam tooshe').to(message.chat.id);
@@ -60,11 +44,10 @@ bot.command('start', message => {
   bot.send(hello.to(message.chat.id));
 });
 bot.command('check', message => {
+  var answer = new Message().text(message.chat.id).to('110176673');
   console.log(message.chat.id);
-});
-bot.get(/salam|help|Salam|Help/, message => {
-  var answer = new Message().text('salam be rooye mahet,age miay roo /ok click kon').to(message.chat.id);
-    bot.send(answer);
+  bot.send(answer);
+
 });
 
 
@@ -254,7 +237,10 @@ bot.command('number', function(message) {
   if (message.chat.first_name && message.chat.first_name === "Behnam" || message.chat.first_name === "Amir") {
     var answer = new Message().text(12-list.length + " ta kamim,kasi yar dare?").to('-16714675');
     bot.send(answer);
-  }
+  };
+
+
+
 });
 
 // to stop a bot
